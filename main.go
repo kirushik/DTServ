@@ -21,10 +21,14 @@ func initHandlers(greeting string) handlers {
 		}}
 }
 
-func main() {
+func GetMainEngine(greeting string) *gin.Engine {
 	router := gin.Default()
-	handlers := initHandlers("Алоха")
+	handlers := initHandlers(greeting)
 	router.GET("/hello", handlers.greeter)
-	router.GET("/goodbye", handlers.goodbyer)
+	return router
+}
+
+func main() {
+	router := GetMainEngine("Алоха")
 	router.Run(":8080")
 }
