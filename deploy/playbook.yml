@@ -1,0 +1,8 @@
+---
+- name: Создание DTServ на сервере
+  hosts: all
+  gather_facts: no
+  sudo: yes
+
+  roles:
+  - go

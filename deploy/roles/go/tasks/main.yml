@@ -1,0 +1,16 @@
+---
+- name: Install Go repo
+  apt_repository:
+    repo: 'ppa:ubuntu-lxc/lxd-stable'
+    state: present
+
+- name: Update apt packages if needed
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    upgrade: safe
+
+- name: Install go compiler
+  apt:
+    name: golang
+    state: latest
