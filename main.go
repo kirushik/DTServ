@@ -19,7 +19,7 @@ func initHandlers(greeting string) handlers {
 		}, goodbyer: func(c *gin.Context) {
 			c.String(http.StatusOK, "Bye-bye")
 		}}
-}
+	}
 
 func GetMainEngine(greeting string) *gin.Engine {
 	router := gin.Default()

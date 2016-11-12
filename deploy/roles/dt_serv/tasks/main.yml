@@ -1,0 +1,46 @@
+---
+- name: create user dt_serv
+  user:
+    name: dt_serv
+    shell: /bin/false
+
+- name: create gopath for dt_serv
+  file: dest=/home/dt_serv/gopath state=directory
+  become: true
+  become_user: dt_serv
+
+- name: clone dt_serv from github
+  git:
+    repo: https://github.com/plzfixme/DTServ.git
+    dest: /home/dt_serv/gopath/src/plzfixme/DTServ
+  become: true
+  become_user: dt_serv
+
+- name: fetch go dependencies
+  shell: go get
+  args:
+    chdir: "/home/dt_serv/gopath/src/plzfixme/DTServ"
+  environment:
+    GOPATH: /home/dt_serv/gopath
+  become: true
+  become_user: dt_serv
+
+- name: build binary with go
+  shell: go build -ldflags "-s -w"
+  args:
+    chdir: "/home/dt_serv/gopath/src/plzfixme/DTServ"
+  environment:
+    GOPATH: /home/dt_serv/gopath
+  become: true
+  become_user: dt_serv
+
+- name: copy dt_serv to system path
+  copy:
+    src: /home/dt_serv/gopath/src/plzfixme/DTServ/DTServ
+    remote_src: true
+    dest: /usr/local/bin
+    mode: "u=rwx,g=rx,o=rx"
+
+#- name: copy dt_serv to system path
+#- name: create systemd service for dt_serv
+#- name: enable and start dt_serv
