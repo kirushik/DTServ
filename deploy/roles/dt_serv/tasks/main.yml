@@ -44,9 +44,17 @@
   copy:
     src: /home/dt_serv/gopath/src/plzfixme/DTServ/DTServ
     remote_src: true
-    dest: /usr/local/bin
+    dest: /usr/local/bin/dtserv
     mode: "u=rwx,g=rx,o=rx"
 
-#- name: copy dt_serv to system path
-#- name: create systemd service for dt_serv
-#- name: enable and start dt_serv
+- name: create systemd service for dtserv
+  copy:
+    src: dtserv.service
+    dest: /etc/systemd/system
+
+
+- name: enable and start dtserv
+  service:
+    name: dtserv
+    state: started
+    enabled: yes
