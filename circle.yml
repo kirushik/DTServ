@@ -1,0 +1,13 @@
+machine:
+  python:
+    version: 2.7.10
+
+dependencies:
+  pre:
+    - pip install ansible
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - ansible-playbook -i ./deploy/inventory ./deploy/playbook.yml

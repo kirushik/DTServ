@@ -1,0 +1,11 @@
+[Unit]
+Description=DTServ - Server for ERP
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/dtserv
+ExecStop=killall dtserv
+
+[Install]
+WantedBy=multi-user.target
