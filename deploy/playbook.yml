@@ -2,7 +2,7 @@
 - name: Создание DTServ на сервере
   hosts: all
   gather_facts: no
-  sudo: yes
+  become: yes
 
   roles:
   - ssh_configuration
