@@ -1,0 +1,16 @@
+{% if vagrant %}
+
+*:80
+
+{% else %}
+
+https://dtserv.pimenov.cc
+tls kirill@pimenov.cc
+
+{% endif %}
+
+proxy / localhost:8080 {
+  transparent
+}
+
+gzip

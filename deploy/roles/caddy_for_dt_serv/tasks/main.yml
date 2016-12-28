@@ -13,6 +13,12 @@
     name: caddy
     state: latest
 
+- name: Install caddyfile
+  template:
+    src: caddyfile.j2
+    dest: /etc/caddy/caddyfile
+  notify: restart caddy
+
 - name: Enable and start caddy service
   service:
     name: caddy
