@@ -1,0 +1,21 @@
+---
+- name: Install caddy repo
+  apt_repository:
+    repo: 'ppa:hduran-8/caddy'
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install caddy http frontend server
+  apt:
+    name: caddy
+    state: latest
+
+- name: Enable and start caddy service
+  service:
+    name: caddy
+    state: started
+    enabled: yes
+

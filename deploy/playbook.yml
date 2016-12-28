@@ -8,3 +8,4 @@
   - ssh_configuration
   - go
   - dt_serv
+  - caddy_for_dt_serv
